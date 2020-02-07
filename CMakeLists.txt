@@ -1,9 +1,11 @@
-cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+SET(CMAKE_CUDA_COMPILER /usr/local/cuda-9.0/bin/nvcc)
+SET(CMAKE_CUDA_COMPILER_ENV_VAR /usr/local/cuda-9.0/bin/nvcc)
 project(CUDA_Test_Clion LANGUAGES CXX CUDA)
 project(cuda_base CXX CUDA)
 
 if ($ENV{CLION_IDE})
-    include_directories("C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\include")
+    include_directories("/usr/local/cuda-9.0/include")
 endif ()
 
 set(CMAKE_CXX_STANDARD 11)
@@ -17,7 +19,7 @@ set_target_properties( cuda_base
         )
 
 
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -gencode arch=compute_50,code=sm_50")
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -gencode=arch=compute_62,code=sm_62")
 
 add_executable(CUDA_Test_Clion
         main.cpp
