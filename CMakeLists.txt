@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
-SET(CMAKE_CUDA_COMPILER /usr/local/cuda-9.0/bin/nvcc)
-SET(CMAKE_CUDA_COMPILER_ENV_VAR /usr/local/cuda-9.0/bin/nvcc)
+SET(CMAKE_CUDA_COMPILER /usr/local/cuda-10.0/bin/nvcc)
+SET(CMAKE_CUDA_COMPILER_ENV_VAR /usr/local/cuda-10.0/bin/nvcc)
 project(CUDA_Test_Clion LANGUAGES CXX CUDA)
 project(cuda_base CXX CUDA)
 
+#find_package(CUDA)
 if ($ENV{CLION_IDE})
-    include_directories("/usr/local/cuda-9.0/include")
+    include_directories("/usr/local/cuda-10.0/include")
 endif ()
 
 set(CMAKE_CXX_STANDARD 11)
@@ -28,6 +29,6 @@ add_executable(CUDA_Test_Clion
 set_target_properties(
         CUDA_Test_Clion
         PROPERTIES
-            CUDA_SEPARABLE_COMPILATION ON
-    )
+        CUDA_SEPARABLE_COMPILATION ON
+)
 target_link_libraries(CUDA_Test_Clion cuda_base)
